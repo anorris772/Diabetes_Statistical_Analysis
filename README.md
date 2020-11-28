@@ -1,1 +1,1 @@
-# IBD_StatAnalysis
+# IBD_Statistical_Analysis
