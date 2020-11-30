@@ -1,0 +1,12 @@
+filter 
+- newly diagnosed rate increasing?
+	tidyverse(data = filter.indicatorID="newlyDiagnosed")
+	select attributes I want(raceID, estimate(ratePer1000), and year)
+	table *pipe* filter(newlydiagnosed) *pipe* select *pipe* GGPLOT(aes x=year, y=estimate, fill = raceID)
+	scatterplot, linearModel, geom_point(add statline)
+stratify on race
+
+
+FIGURE OUT
+ - Year groupings 3000-3005
+ - best visualization
