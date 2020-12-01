@@ -12,7 +12,7 @@
 archive = read.csv("C:/Users/Alex/Desktop/Fall20/Stat6000/data/National_Data.csv", header=TRUE)
 
 # Throughout this project the Tidyverse package for R is utilized
-# install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
 
 # Start by narrowing down to just new diagnoses
