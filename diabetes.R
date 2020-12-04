@@ -1,7 +1,4 @@
-# Alex Norris - oan0003
-# Stat 6000 - FinalProject
-
-
+# Alex Norris 
 
 
 ###########################
@@ -58,7 +55,7 @@ ggplot(race_archive, aes(x = yearid,
                          col = as.factor(raceid))) + 
         geom_point(size = 3) +
         xlab("Year") + ylab("Diabetes Estimate Per 1000") +
-        labs(title = "Rates of Diabetes Across Races Over Time", col="Race") + 
+        labs(title = "Rates of Diabetes by Race Over Time", col="Race") + 
         scale_color_hue(labels = c("White", "Black", "Hispanic")) +
         stat_smooth(method = "lm", se = FALSE) +
         stat_cor()
@@ -79,7 +76,7 @@ ggplot(gender_archive, aes(x = yearid,
                          col = as.factor(genderid))) + 
       geom_point(size = 3) +
       xlab("Year") + ylab("Diabetes Estimate Per 1000") +
-      labs(title = "Rates of Diabetes Across Gender Over Time", col="Gender") + 
+      labs(title = "Rates of Diabetes by Gender Over Time", col="Gender") + 
       scale_color_hue(labels = c("Male", "Female")) +
       stat_smooth(method = "lm", se = FALSE) +
       stat_cor()
@@ -88,73 +85,7 @@ ggplot(gender_archive, aes(x = yearid,
 
 
 
-###########################
-#
-#       Obesity
-#
-###########################
-nationalObesity = read.csv("C:/Users/anorr/Desktop/Stat6000/FinalProject/Diabetes_Statistical_Analysis/data/NationalObesity/NationalAggregated.csv", header=TRUE)
-alabamaObesity = read.csv("C:/Users/anorr/Desktop/Stat6000/FinalProject/Diabetes_Statistical_Analysis/data/AlabamaObesity/AlabamaAggregated.csv", header=TRUE)
 
-
-nationalO <- nationalObesity %>%
-  filter(Race.Ethnicity != "2 or more races" &
-           Race.Ethnicity != "Other")
-
-ggplot(nationalO, aes(x = YearStart, 
-                           y = as.numeric(Data_Value), 
-                           col = as.factor(Race.Ethnicity))) + 
-        geom_point(size = 3) +
-        xlab("Year") + ylab("Obesity Rate") +
-        labs(title = "National Rates of Obesity Across Race", col="Race") +
-        stat_smooth(method = "lm", se = FALSE) 
-
-
-# Alabama data lacks values for certain races, so we filter them out
-alabamaO <- alabamaObesity %>%
-  filter(Race.Ethnicity != "2 or more races" &
-           Race.Ethnicity != "Other" &
-           Race.Ethnicity != "Asian" &
-           Race.Ethnicity != "Hawaiian/Pacific Islander")
-
-ggplot(alabamaO, aes(x = YearStart, 
-                     y = as.numeric(Data_Value), 
-                     col = as.factor(Race.Ethnicity))) + 
-        geom_point(size = 3) +
-        xlab("Year") + ylab("Obesity Rate") +
-        labs(title = "Rates of Obesity in Alabama Across Race", col="Race") +
-        stat_smooth(method = "lm", se = FALSE)
-
-
-
-
-
-nationalComp <- nationalObesity %>%
-  filter(Race.Ethnicity != "2 or more races" &
-           Race.Ethnicity != "Other" &
-           Race.Ethnicity != "Asian" &
-           Race.Ethnicity != "Hawaiian/Pacific Islander" &
-           Race.Ethnicity != "American Indian/Alaska Native")
-
-alabamaComp <- alabamaObesity %>%
-  filter(Race.Ethnicity != "2 or more races" &
-           Race.Ethnicity != "Other" &
-           Race.Ethnicity != "Asian" &
-           Race.Ethnicity != "Hawaiian/Pacific Islander" &
-           Race.Ethnicity != "American Indian/Alaska Native")
-
-
-ggplot(alabamaComp, aes(x = YearStart, 
-                     y = as.numeric(Data_Value), 
-                     col = as.factor(Race.Ethnicity))) + 
-        geom_point(size = 3) +
-        xlab("Year") + ylab("Obesity Rate") +
-        labs(title = "Obesisty Rates By Race in Alabama", col="Race", 
-             caption = "National Rate In Dashed Line") +
-        stat_smooth(method = "lm", se = FALSE) +
-        stat_smooth(method = "lm",linetype = "dashed", se = FALSE, 
-                    data = nationalComp, aes(x = YearStart, 
-                    y = as.numeric(Data_Value),col = as.factor(Race.Ethnicity)))
 
 
 
